@@ -1,4 +1,13 @@
-Format of Date: YYYY-MM-DD
+```Format the Changes Log
+Changes (YYYY-MM-DD HH:MM:SS UTC 8 Unix timestamp: xxxxxxxxx):
+- Summary: Short summary of changes.
+Detailed list of changes:
+- Added / Modified / Removed
+    - File path
+        - Purpose / Change
+        - Key content (if applicable)
+```
+
 Changes (2026-02-03):
 
 - Summary: 把頁尾從 `src/App.jsx` 拆出成獨立元件，便於未來維護與路由整合（SPA）。
@@ -26,18 +35,27 @@ Changes (2026-02-03):
 		- Rationale: 將頁尾與主要頁面內容分離，方便測試、重用與未來 SSR/TS 轉換。
 	- `DEV.md`
 		- Change: 新增短版變更紀錄與本機驗證步驟（`npm install` / `npm run dev`）。
+ 
+Changes (2026-02-03 16:01:05 UTC+8, Unix: 1770105665):
 
-- Verification
-	- Run locally and confirm footer appears on all pages:
-		```bash
-		npm install
-		npm run dev
-		```
-	- Click the `Privacy Policy` / `Terms of Service` links: currently they are normal anchor links (full navigation). To make them client-side SPA routes, install and configure `react-router-dom` and replace anchors with `<Link to="/...">`.
+- Summary: 新增多個專案基礎檔案，並將樣式與入口點整理到 `src/` 以利開發流程。
 
-- Notes / Next steps
-	- Styling: footer currently uses styles from `src/App.css`; consider moving component-specific CSS to `src/components/Footer.css` for clarity.
-	- Routing: implement `react-router-dom` to convert `/privacy-policy` and `/terms-of-service` into in-app pages without full reloads.
-	- TypeScript: the component is simple and JS-first; when migrating to TS, convert `Footer.jsx` → `Footer.tsx` and add appropriate types.
+- Added / Created
+	- `package.json`
+		- Purpose: 專案依賴與開發 script（`dev`, `build`, `preview`, `lint`）。
+	- `vite.config.js`
+		- Purpose: Vite 配置，啟用 `@vitejs/plugin-react-swc`。
+	- `public/vite.svg` and `src/assets/react.svg`
+		- Purpose: 靜態資源（logo）加入到專案中供展示。
+	- `src/index.css`
+		- Purpose: 全域基底樣式（字體、色彩、按鈕、佈局等）。
+	- `src/App.css`
+		- Purpose: App/組件樣式（logo、card、read-the-docs 等）。
+	- `src/main.jsx`
+		- Purpose: 應用進入點，使用 `createRoot` 將 `App` 掛載到 `#root`。
 
-Entry created by automation on 2026-02-03.
+- Modified / Moved
+	- `src/App.jsx`
+		- Now imports `Footer` and renders `<Footer />` at the end.
+	- CSS consolidation:
+		- Previously-separated default styles were consolidated into `src/App.css` and `src/index.css` to centralize global and app-specific styling.
