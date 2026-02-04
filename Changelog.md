@@ -1,17 +1,27 @@
-Get time command: `node -e "const d = new Date(); console.log(d.toString(), ' ', Math.round(d.getTime()/1000));"`
+Get time command: `Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC+8"`
 ```Format the Changes Log (latest on top):
-================================================
-Changes (YYYY-MM-DD HH:MM:SS UTC 8 Unix timestamp: xxxxxxxxx):
+---
+Changes (YYYY-MM-DD HH:MM:SS UTC+8):
 - Summary: Short summary of changes.
 Detailed list of changes:
 - Added / Modified / Removed
     - File path
         - Purpose / Change
         - Key content (if applicable)
-================================================
+---
 ```
 
-Changes (2026-02-03 16:01:05 UTC+8, Unix: 1770105665):
+---
+Changes (2026-02-04 11:20:57 UTC+8):
+- Summary: 更新 Changelog 模板與範例內容，提升可讀性與一致性。
+Detailed list of changes:
+- Modified
+	- Changelog.md
+		- Change: 調整標題格式與範例內容，加入更清晰的說明。
+
+---
+---
+Changes (2026-02-03 16:01:05 UTC+8):
 
 - Summary: 新增多個專案基礎檔案，並將樣式與入口點整理到 `src/` 以利開發流程。
 
@@ -34,7 +44,8 @@ Changes (2026-02-03 16:01:05 UTC+8, Unix: 1770105665):
 		- Now imports `Footer` and renders `<Footer />` at the end.
 	- CSS consolidation:
 		- Previously-separated default styles were consolidated into `src/App.css` and `src/index.css` to centralize global and app-specific styling.
-
+---
+---
 Changes (2026-02-03):
 
 - Summary: 把頁尾從 `src/App.jsx` 拆出成獨立元件，便於未來維護與路由整合（SPA）。
@@ -62,3 +73,4 @@ Changes (2026-02-03):
 		- Rationale: 將頁尾與主要頁面內容分離，方便測試、重用與未來 SSR/TS 轉換。
 	- `DEV.md`
 		- Change: 新增短版變更紀錄與本機驗證步驟（`npm install` / `npm run dev`）。
+---
