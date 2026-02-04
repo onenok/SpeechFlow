@@ -1,16 +1,72 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SpeechFlow
+=========
 
-Currently, two official plugins are available:
+專案概述
+--
+SpeechFlow 為基於 Vite + React 的前端範例專案，使用單頁應用（SPA）架構，後續導入路由、元件化, 視情況可能會轉用TypeScript。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+技術棧
+--
+- 開發工具：Vite
+- 前端框架：React（使用 @vitejs/plugin-react-swc）
+- 語言：JavaScript + SWC（未來maybe可能會改用TypeScript）
+- 套件管理：npm
 
-## React Compiler
+主要檔案與目錄
+--
+- `index.html`：Vite 進入點，包含 `<div id="root"></div>`。
+- `package.json`：專案依賴與常用 script (`dev`, `build`, `preview`, `lint`)。
+- `vite.config.js`：Vite 設定，啟用 React SWC 插件。
+- `src/main.jsx`：應用入口，建立 React root 並掛載 `App`。
+- `src/App.jsx`：主要應用殼（目前負責頁面結構與範例內容）。
+- `src/components/Footer.jsx`：已抽出的頁尾元件（含 `/privacy-policy` 與 `/terms-of-service` 連結）。
+- `src/index.css` / `src/App.css`：全域與應用樣式。
+- `public/` 與 `src/assets/`：靜態資源（logo 等）。
+- `Changelog.md`：變更紀錄（請將重要變更寫入此檔）。
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+開發與執行
+--
+1. 安裝依賴：
 
-## Expanding the ESLint configuration
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. 啟動開發伺服器：
+
+```bash
+npm run dev
+```
+
+3. 建置（production）：
+
+```bash
+npm run build
+```
+
+4. 本機預覽建置：
+
+```bash
+npm run preview
+```
+
+分支與 PR 流程
+--
+採用 Feature Branch + Pull Request 流程，`main` 分支受保護，禁止直接 push。所有功能修改請建立 feature branch，並以 PR 合併，包含必要的說明與變更紀錄連結。
+
+目前狀態與注意事項
+--
+- 組件化：頁尾已從 `src/App.jsx` 抽離為 `src/components/Footer.jsx`，便於重用與測試。
+- 路由：`/privacy-policy` 與 `/terms-of-service` 目前為普通連結；如需 SPA 行為，請安裝並設定 `react-router-dom`，將 `<a>` 換為 `<Link to="/...">`。
+- 樣式整理：樣式已整合至 `src/index.css` 與 `src/App.css`，建議將元件專屬樣式拆分至 `src/components/*/*.css`（例如 `src/components/Footer.css`）。
+- TypeScript 遷移：專案採用 JS 開發，未來可逐步將單一元件轉為 `.tsx` 並加入型別宣告。
+
+追蹤紀錄
+--
+請將所有重要修改與設計決策記錄在 `Changelog.md`，並在 PR 說明中連結對應條目。
+
+檔案位置
+--
+README 更新於：2026-02-04
+
